@@ -1,0 +1,31 @@
+movies:
+    path:     /
+    defaults: { _controller: "WABoBundle:Movies:index" }
+
+movies_show:
+    path:     /{id}/show
+    defaults: { _controller: "WABoBundle:Movies:show" }
+
+movies_new:
+    path:     /new
+    defaults: { _controller: "WABoBundle:Movies:new" }
+
+movies_create:
+    path:     /create
+    defaults: { _controller: "WABoBundle:Movies:create" }
+    requirements: { _method: post }
+
+movies_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "WABoBundle:Movies:edit" }
+
+movies_update:
+    path:     /{id}/update
+    defaults: { _controller: "WABoBundle:Movies:update" }
+    requirements: { _method: post|put }
+
+movies_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "WABoBundle:Movies:delete" }
+    requirements: { _method: post|delete }
+

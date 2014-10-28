@@ -1,0 +1,30 @@
+cinema:
+    path:     /
+    defaults: { _controller: "WABoBundle:Cinema:index" }
+
+cinema_show:
+    path:     /{id}/show
+    defaults: { _controller: "WABoBundle:Cinema:show" }
+
+cinema_new:
+    path:     /new
+    defaults: { _controller: "WABoBundle:Cinema:new" }
+
+cinema_create:
+    path:     /create
+    defaults: { _controller: "WABoBundle:Cinema:create" }
+    requirements: { _method: post }
+
+cinema_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "WABoBundle:Cinema:edit" }
+
+cinema_update:
+    path:     /{id}/update
+    defaults: { _controller: "WABoBundle:Cinema:update" }
+    requirements: { _method: post|put }
+
+cinema_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "WABoBundle:Cinema:delete" }
+    requirements: { _method: post|delete }

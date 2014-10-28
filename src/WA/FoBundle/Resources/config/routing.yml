@@ -1,0 +1,38 @@
+wa_fo_homepage:
+    path:     /home/
+    defaults: { _controller: WAFoBundle:Default:index }
+
+wa_fo_categories:
+    path:     /home/categories
+    defaults: { _controller: WAFoBundle:Categories:index }
+
+wa_fo_actors:
+    path:     /home/actors
+    defaults: { _controller: WAFoBundle:Actors:index }
+
+wa_fo_directors:
+    path:     /home/directors
+    defaults: { _controller: WAFoBundle:Directors:index }
+
+wa_fo_movies:
+    path:     /home/movies
+    defaults: { _controller: WAFoBundle:Movies:index }
+
+wa_fo_movies_show:
+    path:     /home/{id}/show
+    defaults: { _controller: WAFoBundle:Movies:show }
+
+wa_fo_user_login_check:
+    path:     /user_login_check
+    defaults: { _controller: WAFoBundle:Security:login }
+
+wa_fo_user_logout:
+    pattern: /user_logout
+
+user_login:
+    path:     /user_login
+    defaults: { _controller: WAFoBundle:Security:login }
+
+wa_fo_favorites:
+    path:   /{id}/{type}/fo_favorites
+    defaults: { _controller: WAFoBundle:Movies:favoritesfront }

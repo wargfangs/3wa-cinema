@@ -1,0 +1,44 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Medias</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Moviesid</th>
+                <td>{{ entity.moviesId }}</td>
+            </tr>
+            <tr>
+                <th>Nature</th>
+                <td>{{ entity.nature }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ entity.picture }}</td>
+            </tr>
+            <tr>
+                <th>Video</th>
+                <td>{{ entity.video }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('medias') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('medias_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

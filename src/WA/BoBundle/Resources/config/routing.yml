@@ -1,0 +1,112 @@
+wa_bo_user:
+    resource: "@WABoBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+wa_bo_tags:
+    resource: "@WABoBundle/Resources/config/routing/tags.yml"
+    prefix:   /tags
+
+wa_bo_sessions:
+    resource: "@WABoBundle/Resources/config/routing/sessions.yml"
+    prefix:   /sessions
+
+wa_bo_medias:
+    resource: "@WABoBundle/Resources/config/routing/medias.yml"
+    prefix:   /medias
+
+wa_bo_comments:
+    resource: "@WABoBundle/Resources/config/routing/comments.yml"
+    prefix:   /comments
+
+wa_bo_cinema:
+    resource: "@WABoBundle/Resources/config/routing/cinema.yml"
+    prefix:   /cinema
+
+wa_bo_directors:
+    resource: "@WABoBundle/Resources/config/routing/directors.yml"
+    prefix:   /directors
+
+wa_bo_actors:
+    resource: "@WABoBundle/Resources/config/routing/actors.yml"
+    prefix:   /actors
+
+wa_bo_movies:
+    resource: "@WABoBundle/Resources/config/routing/movies.yml"
+    prefix:   /movies
+
+
+wa_bo_categories:
+    resource: "@WABoBundle/Resources/config/routing/categories.yml"
+    prefix:   /categories
+
+wa_bo_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WABoBundle:Default:index }
+
+wa_bo_page:
+    path:     /
+    defaults: { _controller: WABoBundle:Page:page }
+
+wa_bo_contact:
+    path:     /contact
+    defaults: { _controller: WABoBundle:Contact:contact }
+
+wa_bo_faq:
+    path:     /coucou/{name}
+    defaults: { _controller: WABoBundle:Faq:faq }
+
+wa_bo_login_check:
+    path:     /login_check
+    defaults: { _controller: WABoBundle:Security:login }
+
+wa_bo_logout:
+    pattern: /logout
+
+wa_bo_cover:
+    path:   /{id}/cover
+    defaults: { _controller: WABoBundle:Movies:cover }
+
+wa_bo_visible:
+    path:   /{id}/visible
+    defaults: { _controller: WABoBundle:Movies:visible }
+
+wa_bo_profil_show:
+    path:   /profil/show
+    defaults: { _controller: WABoBundle:User:showprofil }
+
+wa_bo_profil_edit:
+    path:   /profil/edit
+    defaults: { _controller: WABoBundle:User:editprofil }
+
+movies_addcart:
+    path:   /{id}/addcart
+    defaults: { _controller: WABoBundle:Movies:addcart }
+
+movies_removecart:
+    path:   /{id}/removecart
+    defaults: { _controller: WABoBundle:Movies:removecart }
+
+search:
+    path:   /search
+    defaults: { _controller: WABoBundle:Page:search }
+
+favorites:
+    path:   /{id}/{type}/favorites
+    defaults: { _controller: WABoBundle:Movies:favorites }
+
+pdf:
+    path:   /{id}/pdf
+    defaults: { _controller: WABoBundle:Movies:pdf }
+
+paybox:
+    path:   /paybox
+    defaults: { _controller: WABoBundle:Page:paybox }
+
+
+
+
+
+
+
+
+

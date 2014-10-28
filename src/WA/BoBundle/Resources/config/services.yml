@@ -1,0 +1,20 @@
+services:
+    wa.twig.bo_extension:
+        class: WA\BoBundle\Twig\BoExtension
+        tags:
+            - { name: twig.extension }
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+    actors_list:
+       class: WA\BoBundle\Services\ActorsServices
+       arguments: [@doctrine.orm.entity_manager]
+
+    visible_manager:
+        class: WA\BoBundle\Services\VisibleServices
+        arguments: [@doctrine.orm.entity_manager]
+
+    paginator_manager:
+           class: WA\BoBundle\Services\PaginatorServices
+           arguments: [@knp_paginator,@request_stack]

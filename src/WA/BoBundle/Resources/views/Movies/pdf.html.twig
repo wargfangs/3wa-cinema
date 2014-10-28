@@ -1,0 +1,170 @@
+{#<h1>{{ entity.title }}</h1>#}
+{#<img src="{{ entity.image }}"/>#}
+{#<p>{{ entity.description|striptags }}</p>#}
+
+
+
+
+    <div class="table-primary">
+        <div class="table-header">
+            <div class="table-caption">
+                <img src="{{ entity.image }}"/>
+                <h1>{{ entity.title }}</h1>
+                <p>{{ entity.description|striptags }}</p>
+            </div>
+        </div>
+        <table class="record_properties table-bordered">
+            <tbody>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ entity.categories.title }}</td>
+            </tr>
+            <tr>
+                <th>Actors</th>
+                {% for actor in entity.actors %}
+                    <td>{{ actor.firstname ~" "~ actor.lastname }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Directors</th>
+                {% for director in entity.directors %}
+                    <td>{{ director.firstname ~" "~ director.lastname }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Tags</th>
+                {% for tag in entity.tags %}
+                    <td>{{ tag.word}}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Commentaires</th>
+                {% for comment in entity.comments %}
+                    <td>{{ comment.content}}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Typefilm</th>
+                <td>{{ entity.typeFilm }}</td>
+            </tr>
+            {#<tr>#}
+                {#<th>Synopsis</th>#}
+                {#<td>{{ entity.synopsis|striptags|truncate(200, false, '') }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Description</th>#}
+                {#<td>{{ entity.description|striptags }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Image</th>#}
+                {#<td><img src="{{ asset('uploads/movies/'~ entity.image) }}" alt="" class="img-responsive"/></td>#}
+            {#</tr>#}
+            {% if media.html is defined %}
+                <tr>
+                    <th>Trailer</th>
+                    <td>{{ media.html|raw }}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <th>Languages</th>
+                <td>{{ entity.languages }}</td>
+            </tr>
+            <tr>
+                <th>Distributeur</th>
+                <td>{{ entity.distributeur }}</td>
+            </tr>
+            <tr>
+                <th>Bo</th>
+                <td>{{ entity.bo }}</td>
+            </tr>
+            <tr>
+                <th>Annee</th>
+                <td>{{ entity.annee }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ entity.budget|price }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ entity.duree }}</td>
+            </tr>
+            <tr>
+                <th>Daterelease</th>
+                <td>{{ entity.dateRelease|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Notepresse</th>
+                <td>{{ entity.notePresse }}</td>
+            </tr>
+            <tr>
+                <th>Visible</th>
+                <td>{{ entity.visible }}</td>
+            </tr>
+            <tr>
+                <th>Cover</th>
+                <td>{{ entity.cover }}</td>
+            </tr>
+            <tr>
+                <th>Shop</th>
+                <td>{{ entity.shop }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ entity.slug }}</td>
+            </tr>
+            <tr>
+                <th>Views</th>
+                <td>{{ entity.views }}</td>
+            </tr>
+            <tr>
+                <th>Datecreated</th>
+                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dateupdated</th>
+                <td>{{ entity.dateUpdated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datedeleted</th>
+                <td>{{ entity.dateDeleted|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ entity.ref }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ entity.price }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ entity.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Taxe</th>
+                <td>{{ entity.taxe }}</td>
+            </tr>
+            <tr>
+                <th>Shopmode</th>
+                <td>{{ entity.shopMode }}</td>
+            </tr>
+            <tr>
+                <th>Shoptypedvd</th>
+                <td>{{ entity.shopTypeDvd }}</td>
+            </tr>
+            <tr>
+                <th>Shopdate</th>
+                <td>{{ entity.shopDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+

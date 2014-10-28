@@ -1,0 +1,30 @@
+categories:
+    path:     /
+    defaults: { _controller: "WABoBundle:Categories:index" }
+
+categories_show:
+    path:     /{id}/show
+    defaults: { _controller: "WABoBundle:Categories:show" }
+
+categories_new:
+    path:     /new
+    defaults: { _controller: "WABoBundle:Categories:new" }
+
+categories_create:
+    path:     /create
+    defaults: { _controller: "WABoBundle:Categories:create" }
+    requirements: { _method: post }
+
+categories_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "WABoBundle:Categories:edit" }
+
+categories_update:
+    path:     /{id}/update
+    defaults: { _controller: "WABoBundle:Categories:update" }
+    requirements: { _method: post|put }
+
+categories_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "WABoBundle:Categories:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,110 @@
+Actors:
+    type: entity
+    table: actors
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstname:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        lastname:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        dob:
+            type: date
+            nullable: true
+            comment: ''
+        city:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        image:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        fb:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        nationality:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        biography:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        roles:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        slug:
+            type: string
+            nullable: true
+            length: 300
+            fixed: false
+            comment: ''
+        qi:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        recompenses:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        dateCreated:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_created
+        dateDeleted:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_deleted
+    manyToMany:
+        movies:
+            targetEntity: Movies
+            cascade: {  }
+            mappedBy: null
+            inversedBy: actors
+            joinTable:
+                name: actors_movies
+                joinColumns:
+                    -
+                        name: actors_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: movies_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

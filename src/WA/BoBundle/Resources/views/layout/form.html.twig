@@ -1,0 +1,9 @@
+{% use 'form_div_layout.html.twig' with integer_widget as base_integer_widget %}
+
+
+
+{# Widgets #}
+
+{% block form_widget -%}
+    {{ parent() }}
+{%- endblock form_widget %}

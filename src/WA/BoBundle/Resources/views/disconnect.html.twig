@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+{% block title %}Administration 3WA{% endblock %}
+
+    {% block head %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Symfoacademy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        {#<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/demo.css" rel="stylesheet" type="text/css">#}
+        {% stylesheets
+        '@WABoBundle/Resources/public/css/bootstrap.min.css'
+        '@WABoBundle/Resources/public/css/pixel-admin.min.css'
+        '@WABoBundle/Resources/public/css/widgets.min.css'
+        '@WABoBundle/Resources/public/css/rtl.min.css'
+        '@WABoBundle/Resources/public/css/themes.min.css'
+        '@WABoBundle/Resources/public/css/pages.min.css'
+        '@WABoBundle/Resources/public/css/mycss.css'
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+    {% endblock %}
+
+{% block javascripts %}
+
+
+
+    <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <!-- <![endif]-->
+    <!--[if lte IE 9]-->
+    <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <![endif]-->
+
+
+    {% javascripts
+    '@WABoBundle/Resources/public/js/bootstrap.min.js' filter='yui_js'
+    '@WABoBundle/Resources/public/js/pixel-admin.min.js' filter='yui_js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+{% endblock %}
+
+{% block body %}
+
+<body class="theme-default page-signup-alt">
+
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+{% endblock %}
+

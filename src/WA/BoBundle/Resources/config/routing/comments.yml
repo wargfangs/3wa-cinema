@@ -1,0 +1,30 @@
+comments:
+    path:     /
+    defaults: { _controller: "WABoBundle:Comments:index" }
+
+comments_show:
+    path:     /{id}/show
+    defaults: { _controller: "WABoBundle:Comments:show" }
+
+comments_new:
+    path:     /new
+    defaults: { _controller: "WABoBundle:Comments:new" }
+
+comments_create:
+    path:     /create
+    defaults: { _controller: "WABoBundle:Comments:create" }
+    requirements: { _method: post }
+
+comments_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "WABoBundle:Comments:edit" }
+
+comments_update:
+    path:     /{id}/update
+    defaults: { _controller: "WABoBundle:Comments:update" }
+    requirements: { _method: post|put }
+
+comments_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "WABoBundle:Comments:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+actors:
+    path:     /
+    defaults: { _controller: "WABoBundle:Actors:index" }
+
+actors_show:
+    path:     /{id}/show
+    defaults: { _controller: "WABoBundle:Actors:show" }
+
+actors_new:
+    path:     /new
+    defaults: { _controller: "WABoBundle:Actors:new" }
+
+actors_create:
+    path:     /create
+    defaults: { _controller: "WABoBundle:Actors:create" }
+    requirements: { _method: post }
+
+actors_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "WABoBundle:Actors:edit" }
+
+actors_update:
+    path:     /{id}/update
+    defaults: { _controller: "WABoBundle:Actors:update" }
+    requirements: { _method: post|put }
+
+actors_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "WABoBundle:Actors:delete" }
+    requirements: { _method: post|delete }

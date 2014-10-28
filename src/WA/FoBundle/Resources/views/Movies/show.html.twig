@@ -1,0 +1,125 @@
+{% extends 'WAFoBundle::layout.html.twig' %}
+
+{% block content -%}
+    <div class="table-primary">
+        <div class="table-header">
+            <div class="table-caption">
+                <h1>{{ entity.title }}</h1>
+            </div>
+        </div>
+        <table class="record_properties table-bordered">
+            <tbody>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ entity.categories.title }}</td>
+            </tr>
+            <tr>
+                <th>Actors</th>
+                    <td>
+                        <ul>
+                            {% for actor in entity.actors %}
+                                <li>{{ actor.firstname ~" "~ actor.lastname }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+            </tr>
+            <tr>
+                <th>Directors</th>
+                {% for director in entity.directors %}
+                    <td>
+                        <ul>
+                            <li>{{ director.firstname ~" "~ director.lastname }}</li>
+                        </ul>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Typefilm</th>
+                <td>{{ entity.typeFilm }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis</th>
+                <td>{{ entity.synopsis|striptags|truncate(200, false, '') }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description|striptags|truncate(800, false, '') }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/movies/'~ entity.image) }}" alt="" class="img-responsive"/></td>
+            </tr>
+            {% if media.html is defined %}
+                <tr>
+                    <th>Trailer</th>
+                    <td>{{ media.html|raw }}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <th>Distributeur</th>
+                <td>{{ entity.distributeur }}</td>
+            </tr>
+            <tr>
+                <th>Annee</th>
+                <td>{{ entity.annee }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ entity.budget|price }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ entity.duree }}</td>
+            </tr>
+            <tr>
+                <th>Daterelease</th>
+                <td>{{ entity.dateRelease|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Notepresse</th>
+                <td>{{ entity.notePresse }}</td>
+            </tr>
+            <tr>
+                <th>Favorites</th>
+                <td>
+
+            {% if entity in app.user.movies %}
+                <a href="{{ path('wa_fo_favorites', {'id' : entity.id, 'type' : 'supp'}) }}"><i class="na-icon fa fa-heart"></i></a>
+            {% else %}
+                <a href="{{ path('wa_fo_favorites', {'id' : entity.id, 'type' : 'ajout'}) }}"><i class="na-icon fa fa-heart-o"></i></a>
+            {% endif %}
+               </td>
+            </tr>
+            <tr>
+                <th>Commentaires</th>
+                <td>
+                    <ul>
+                        {% for comment in entity.comments %}
+                            <li>{{ comment.content }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+        <div>
+            <h2>ADD A COMMENT</h2>
+            {% if app.user %}
+
+                {{ form(form) }}
+
+            {% else %}
+                <p><a href="{{ path('user_login') }}">CONNECT HERE TO COMMENT</a></p>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+{% endblock %}

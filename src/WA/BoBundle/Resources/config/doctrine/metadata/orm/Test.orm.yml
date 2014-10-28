@@ -1,0 +1,43 @@
+Test:
+    type: entity
+    table: test
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: true
+            length: 300
+            fixed: false
+            comment: ''
+        tel:
+            type: string
+            nullable: true
+            length: 60
+            fixed: false
+            comment: ''
+        content:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        ip:
+            type: string
+            nullable: true
+            length: 300
+            fixed: false
+            comment: ''
+        dateCreated:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_created
+    lifecycleCallbacks: {  }

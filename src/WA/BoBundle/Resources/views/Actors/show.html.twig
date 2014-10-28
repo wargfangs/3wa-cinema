@@ -1,0 +1,98 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Actors</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Movies</th>
+                {% for movie in entity.movies %}
+                    <td>{{ movie.title }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Directors in the same movie</th>
+                {% for movie in entity.movies %}
+                    {% for director in movie.directors %}
+                        <td>{{ director.firstname ~" "~ director.lastname }}</td>
+                    {% endfor %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ entity.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ entity.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Dob</th>
+                <td>{{ entity.dob|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ entity.city }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/actors/'~ entity.image) }}" alt="" class="img-responsive"/></td>
+            </tr>
+            <tr>
+                <th>Fb</th>
+                <td>{{ entity.fb }}</td>
+            </tr>
+            <tr>
+                <th>Nationality</th>
+                <td>{{ entity.nationality }}</td>
+            </tr>
+            <tr>
+                <th>Biography</th>
+                <td>{{ entity.biography }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ entity.roles }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ entity.slug }}</td>
+            </tr>
+            <tr>
+                <th>Qi</th>
+                <td>{{ entity.qi }}</td>
+            </tr>
+            <tr>
+                <th>Recompenses</th>
+                <td>{{ entity.recompenses }}</td>
+            </tr>
+            <tr>
+                <th>Datecreated</th>
+                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datedeleted</th>
+                <td>{{ entity.dateDeleted|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('actors') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('actors_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

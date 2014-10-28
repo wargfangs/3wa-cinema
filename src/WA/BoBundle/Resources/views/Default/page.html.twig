@@ -1,0 +1,527 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% use "WABoBundle:layout:third.html.twig" %}
+
+
+{% block content %}
+
+    {{ parent() }}
+
+
+<div id="main-menu-bg"></div>
+<section class="section1">
+    <div class="row">
+
+        <div class="col-md-4 ">
+            <h1>Movie creation</h1>
+
+            {{ form(form) }}
+
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('movies') }}">
+                        Go to the list
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 ">
+
+
+
+            <!-- 5. $PROFILE_WIDGET_LINKS_EXAMPLE ==============================================================
+
+                            Profile widget - Links example
+            -->
+            <div class="panel panel-success panel-dark widget-profile">
+                <div class="panel-heading">
+                    <div class="widget-profile-bg-icon"><i class="fa fa-flask"></i></div>
+                    <div class="widget-profile-header">
+                        <span>Statistiques</span><br>
+
+                    </div>
+                </div> <!-- / .panel-heading -->
+                <div class="list-group">
+                    <a href="{{ path('movies') }}" class="list-group-item"><i class="fa fa-chevron-right"></i> Movies <span class="badge badge-info">{{ moviesbynum}}</span></a>
+                    <a href="{{ path('actors') }}" class="list-group-item"><i class="fa fa-chevron-right"></i> Actors <span class="badge badge-warning">{{ actorsbynum}}</span></a>
+                    <a href="{{ path('directors') }}" class="list-group-item"><i class="fa fa-chevron-right"></i> Directors <span class="badge badge-danger">{{ directorsbynum}}</span></a>
+                    <a href="{{ path('categories') }}" class="list-group-item"><i class="fa fa-chevron-right"></i> Categories <span class="badge badge-success">{{ categoriesbynum}}</span></a>
+                    <a href="{{ path('cinema') }}" class="list-group-item"><i class="fa fa-chevron-right"></i> Cinemas <span class="badge badge-inverse">{{ cinemasbynum}}</span></a>
+                </div>
+            </div> <!-- / .panel -->
+            <!-- /5. $PROFILE_WIDGET_LINKS_EXAMPLE -->
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- 7. $PROFILE_WIDGET_CENTERED_EXAMPLE ===========================================================
+
+                            Profile widget - Centered example
+            -->
+            <div class="panel panel-danger panel-dark panel-body-colorful widget-profile widget-profile-centered">
+                <div class="panel-heading">
+                    <div class="widget-profile-bg-icon">
+                        <i class="fa fa-film"></i>
+                    </div>
+                    {% set random = random(movieandcinema) %}
+                    <img src="{{ random.image }}" alt="" class="widget-profile-avatar">
+                    <div class="widget-profile-header">
+                        <span>{{ random.title }}</span><br>
+                        {% for cinema in random.cinemas %}
+                        <h5>{{ cinema.title }}</h5>
+                        {% endfor %}
+                        <h5 class="pull-right btn btn-danger btn-xs">
+                            <i class="fa fa-calendar"></i>
+                            <i>{{ random.DateRelease|date("m/d/Y") }}</i>
+                        </h5>
+                    </div>
+                </div> <!-- / .panel-heading -->
+                <div class="panel-body">
+                    <div class="widget-profile-text" style="padding: 0;">
+                        {{ random.synopsis|striptags }}
+                    </div>
+                </div>
+            </div> <!-- / .panel -->
+            <!-- /7. $PROFILE_WIDGET_CENTERED_EXAMPLE -->
+         </div>
+
+    </div> <!-- / .row -->
+
+
+    <!-- 10. $FLOTJS_PIE ===============================================================================
+
+				Flot.js Pie / Doughnut
+
+    <!-- Javascript -->
+    <script>
+        init.push(function () {
+            // Doughnut Chart Data
+            var doughnutChartData = [
+                {% for ca in moviesbycat %}
+                {label: "{{ ca.title }}", data: {{ ca.nbmovies }} },
+                {% endfor %}
+
+            ];
+
+            // Init Chart
+            $('#jq-flot-pie').pixelPlot(doughnutChartData, {
+                series: {
+                    pie: {
+                        show: true,
+                        radius: 1,
+                        innerRadius: 0.5,
+                        label: {
+                            show: true,
+                            radius: 3 / 4,
+                            formatter: function (label, series) {
+                                return '<div style="font-size:14px;text-align:center;padding:2px;color:white;">' + Math.round(series.percent) + '%</div>';
+                            },
+                            background: { opacity: 0 }
+                        }
+                    }
+                }
+            }, {
+                height: 205
+            });
+        });
+    </script>
+    <!-- / Javascript -->
+
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Répartition des films par catégorie</span>
+        </div>
+        <div class="panel-body">
+
+            <div class="graph-container">
+                <div id="jq-flot-pie"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /10. $FLOTJS_PIE -->
+
+    <!-- 7. $MORRISJS_BARS =============================================================================
+
+				Morris.js Bars
+-->
+    <!-- Javascript -->
+    <script>
+        init.push(function () {
+            Morris.Bar({
+                element: 'hero-bar',
+                data: [
+                    {% for moviews in moviesbyview %}
+                    { device: '{{ moviews.title|striptags }}', geekbench: {{ moviews.views}} },
+                    {% endfor %}
+                ],
+                xkey: 'device',
+                ykeys: ['geekbench'],
+                labels: ['Vues'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+                barColors: PixelAdmin.settings.consts.COLORS,
+                gridLineColor: '#cfcfcf',
+                resize: true
+            });
+        });
+    </script>
+    <!-- / Javascript -->
+
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Films les plus vus</span>
+        </div>
+        <div class="panel-body">
+
+            <div class="graph-container">
+                <div id="hero-bar" class="graph"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /7. $MORRISJS_BARS -->
+    <div class="panel">
+    <div id="myCanvasContainer" >
+        <canvas width="300" height="300" id="myCanvas">
+            <p>Anything in here will be replaced on browsers that support the canvas element</p>
+            <ul>
+                {% for tag in tags %}
+                    {% for movie in tag.movies %}
+                        {% if tag|length > 1 %}
+                            <li><a href="{{ path('movies_show', { 'id': movie.id }) }}">{{ tag.word }}</a></li>
+                        {% else %}
+                            <li><a href="{{ path('movies_show', { 'id': movie.id }) }}">{{ tag.word }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </canvas>
+    </div>
+        </div>
+
+    {#<div>#}
+        {#<ul>#}
+            {#{% for tag in tagscloud %}#}
+                {#&#123;&#35;{% for movie in tag %}&#35;&#125;#}
+                {#{% if tag.1 < 2 %}#}
+                    {#<li><a href="{{ path('movies_show', { 'movie': movie.id }) }}">{{ tag.word }}</a></li>#}
+                {#{% else %}#}
+                    {#<li><a class="red" href="{{ path('movies_show', { 'movie': movie.id }) }}">{{ tag.word }}</a></li>#}
+                {#{% endif %}#}
+                {#&#123;&#35;{% endfor %}&#35;&#125;#}
+            {#{% endfor %}#}
+        {#</ul>#}
+    {#</div>#}
+
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <title>Geocoding service</title>
+        <style>
+            html, body, #map-canvas {
+                height: 500px;
+                width: 100%;
+                margin: 0px;
+                padding: 0px
+            }
+
+        </style>
+
+    </head>
+    <div class="panel">
+    <div id="map-canvas"></div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="col-md-6">
+
+        </div>
+
+    <!-- Dark warning -->
+    <div class="panel panel-warning panel-dark">
+        <div class="panel-heading">
+            <span class="panel-title">Films à l'affiche</span>
+            <div class="panel-heading-controls">
+                <div class="panel-heading-icon"><i class="fa fa-inbox"></i></div>
+            </div>
+        </div>
+        {% for cover in moviescover %}
+            <div class="panel-body">
+                {{ cover.title }}
+            </div>
+        {% endfor %}
+    </div> <!-- / .panel -->
+
+    <!-- Dark warning -->
+    <div class="panel panel-warning panel-dark">
+        <div class="panel-heading">
+            <span class="panel-title">Films attendus</span>
+            <div class="panel-heading-controls">
+                <div class="panel-heading-icon"><i class="fa fa-inbox"></i></div>
+            </div>
+        </div>
+        {% for anticipated in anticipatedmovies %}
+            <div class="panel-body">
+                {{ anticipated.title }}
+            </div>
+        {% endfor %}
+    </div> <!-- / .panel -->
+
+</section>
+
+
+<section class="section2">
+<div class="col-sm-6">
+    <!-- Primary table -->
+    <div class="table-primary">
+        <div class="table-header">
+            <div class="table-caption">
+                CATEGORIES : {{ categories|length }}
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>
+                   {{ category.title|upper }}
+                </td>
+                <td>
+                   {{ category.description|striptags }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- / Primary table -->
+
+    <!-- danger table -->
+    <div class="table-danger">
+        <div class="table-header">
+            <div class="table-caption">
+                DIRECTORS : {{ directors|length }}
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for director in directors %}
+                <tr>
+                    <td>
+                        {{ director.firstname }}
+                    </td>
+                    <td>
+                        {{ director.lastname }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- / danger table -->
+
+</div>
+
+<div class="col-sm-6">
+
+    <!-- Success table -->
+    <div class="table-success">
+        <div class="table-header">
+            <div class="table-caption">
+                ACTORS : {{ actors|length }}
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for actor in actors %}
+                <tr>
+                    <td>
+                        {{ actor.firstname }}
+                    </td>
+                    <td>
+                        {{ actor.lastname }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <!-- / Success table -->
+    <!-- 16. $COMMENTS =================================================================================
+
+                    Comments
+    -->
+    <div class="panel widget-comments">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-comment-o"></i>Last comments</span>
+        </div> <!-- / .panel-heading -->
+        <div class="panel-body">
+    {% for comments in commentsbyid %}
+            <div class="comment">
+                <img src="" alt="" class="comment-avatar">
+                <div class="comment-body">
+                    <div class="comment-by">
+                        <a href="#" title="">{{ comments.user.username }}</a> commented on <a href="#" title="">Article Name</a>
+                    </div>
+                    <div class="comment-text">
+                        {{ comments.content }}
+                    </div>
+                    <div class="comment-actions">
+                        <a href="#"><i class="fa fa-pencil"></i>Edit</a>
+                        <a href="#"><i class="fa fa-times"></i>Remove</a>
+                        <span class="pull-right">2 hours ago</span>
+                    </div>
+                </div> <!-- / .comment-body -->
+            </div> <!-- / .comment -->
+
+    {% endfor %}
+        </div> <!-- / .panel-body -->
+    </div> <!-- / .panel -->
+    <!-- /16. $COMMENTS -->
+</div>
+
+
+
+<div class="col-sm-12">
+    <!-- warning table -->
+    <div class="table-warning">
+        <div class="table-header">
+            <div class="table-caption">
+                MOVIES : {{ movies|length }}
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Synopsis</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        {{ movies.title }}
+                    </td>
+                    <td>
+                        {{ movies.synopsis|striptags }}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- / warning table -->
+</div>
+
+{#<div class="col-sm-12">#}
+    {#<!-- info table -->#}
+    {#<div class="table-info">#}
+        {#<div class="table-header">#}
+            {#<div class="table-caption">#}
+                {#CINEMAS : {{ cinema|length }}#}
+            {#</div>#}
+        {#</div>#}
+        {#<table class="table table-bordered">#}
+            {#<thead>#}
+            {#<tr>#}
+                {#<th>Name</th>#}
+                {#<th>Ville</th>#}
+            {#</tr>#}
+            {#</thead>#}
+            {#<tbody>#}
+
+            {#<tr>#}
+                {#<td>#}
+                    {#{{ cinema.title }}#}
+                {#</td>#}
+                {#<td>#}
+                    {#{{ cinema.ville }}#}
+                {#</td>#}
+            {#</tr>#}
+
+            {#</tbody>#}
+        {#</table>#}
+    {#</div>#}
+    {#<!-- / info table -->#}
+
+{#</div>#}
+
+<div class="col-sm-12">
+    <!-- info table -->
+    <div class="table-info">
+        <div class="table-header">
+            <div class="table-caption">
+                MOVIES BY ID : {{ moviesbyid|length }}
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+    {% for movies in moviesbyid %}
+            <tr>
+                <td>
+                    {{ movies.title }}
+    <button class="btn btn-success btn-rounded pull-right">
+        {% if movies.cover == "true" %}
+          <a href="{{ path('wa_bo_cover', {'id': movies.id}) }}">Cover : ON</a>
+        {% else %}
+            <a href="{{ path('wa_bo_cover', {'id': movies.id}) }}">Cover : OFF</a>
+        {% endif %}
+    </button> &nbsp;&nbsp;
+    <button class="btn btn-success btn-rounded pull-right">
+        {% if movies.visible == "true" %}
+            <a href="{{ path('wa_bo_visible', {'id': movies.id}) }}">Visible : ON</a>
+        {% else %}
+            <a href="{{ path('wa_bo_visible', {'id': movies.id}) }}">Visible : OFF</a>
+        {% endif %}
+    </button> &nbsp;&nbsp;
+                </td>
+            </tr>
+
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- / info table -->
+
+{#    {{ random('randommovie')}}
+#}
+</div>
+<div class="col-sm-12">
+        <p>{{ render(controller('WABoBundle:User:index')) }}</p>
+
+</div>
+</section>
+
+
+{% endblock %}

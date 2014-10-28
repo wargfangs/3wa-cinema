@@ -1,0 +1,38 @@
+Medias:
+    type: entity
+    table: medias
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        moviesId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: movies_id
+        nature:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '1'
+        picture:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        video:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

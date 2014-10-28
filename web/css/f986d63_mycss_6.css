@@ -1,0 +1,20 @@
+.licat{
+	list-style-type: none;
+}
+
+.colnone{
+	padding-left: 0;
+}
+
+.mybutton{
+	width: 50px;
+	float: right;
+}
+
+#main-wrapper{
+    overflow: visible!important;
+}
+
+#red{
+    color: #FF0000;
+}

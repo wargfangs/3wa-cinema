@@ -1,0 +1,19 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Categories edit</h1>
+
+    {{ form_start(edit_form, {'attr':{'class': 'panel-heading'}}) }}
+
+    {{ form_errors(edit_form) }}
+        <ul class="record_actions">
+    <li>
+        {{ form_row(edit_form.title, {'label':'title'}) }}
+        <a href="{{ path('categories') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form_end(edit_form) }}</li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

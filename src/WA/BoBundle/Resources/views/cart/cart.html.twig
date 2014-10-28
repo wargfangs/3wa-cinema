@@ -1,0 +1,25 @@
+<div class="table-primary">
+    <div class="table-header">
+        <div class="table-caption">
+            <h3>My Shopping Cart</h3>
+        </div>
+    </div>
+        <table class="records_list table table-bordered">
+            <thead>
+            <tr>
+                <th colspan="2">Title</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key, product in panier %}
+                <tr>
+                    <td><a href="{{ path('movies_show', { 'id': product.id }) }}">{{ product.title  }}</a>
+                <td><button>
+                    <a href="{{ path('movies_removecart', {'id': key}) }}">Supprimer</a>
+                </button></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>

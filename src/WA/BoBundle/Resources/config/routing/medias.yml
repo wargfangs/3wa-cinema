@@ -1,0 +1,30 @@
+medias:
+    path:     /
+    defaults: { _controller: "WABoBundle:Medias:index" }
+
+medias_show:
+    path:     /{id}/show
+    defaults: { _controller: "WABoBundle:Medias:show" }
+
+medias_new:
+    path:     /new
+    defaults: { _controller: "WABoBundle:Medias:new" }
+
+medias_create:
+    path:     /create
+    defaults: { _controller: "WABoBundle:Medias:create" }
+    requirements: { _method: post }
+
+medias_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "WABoBundle:Medias:edit" }
+
+medias_update:
+    path:     /{id}/update
+    defaults: { _controller: "WABoBundle:Medias:update" }
+    requirements: { _method: post|put }
+
+medias_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "WABoBundle:Medias:delete" }
+    requirements: { _method: post|delete }

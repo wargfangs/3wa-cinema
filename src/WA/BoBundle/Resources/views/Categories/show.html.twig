@@ -1,0 +1,63 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Categories</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Movies</th>
+                {% for movie in entity.movies %}
+                    <td>{{ movie.title }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+
+            <tr>
+                <th>Parentid</th>
+                <td>{{ entity.parentId }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ entity.position }}</td>
+            </tr>
+            <tr>
+                <th>Datecreated</th>
+                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dateupdated</th>
+                <td>{{ entity.dateUpdated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/categories/'~ entity.image) }}" alt="" class="img-responsive"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('categories') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('categories_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

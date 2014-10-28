@@ -1,0 +1,39 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+<div class="table-primary">
+    <div class="table-header">
+        <div class="table-caption">
+            <h3>My search</h3>
+        </div>
+    </div>
+    <table class="records_list table table-bordered">
+        <thead>
+        <tr>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% if results is empty %}
+            <tr>
+                <td>Aucun résultats</td>
+            </tr>
+            {% else %}
+                {% for movie in results %}
+            <tr>
+                <td><a href="{{ path('movies_show', { 'id': movie.id }) }}">{{ movie.title  }}</a>
+                </td>
+            </tr>
+                {% endfor %}
+            {% endif %}
+
+        </tbody>
+    </table>
+</div>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(entities) }}
+</div>
+
+{% endblock %}

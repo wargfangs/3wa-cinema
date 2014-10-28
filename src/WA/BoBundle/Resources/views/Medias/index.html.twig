@@ -1,0 +1,51 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Medias list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Moviesid</th>
+                <th>Nature</th>
+                <th>Picture</th>
+                <th>Video</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('medias_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.moviesId }}</td>
+                <td>{{ entity.nature }}</td>
+                <td>{{ entity.picture }}</td>
+                <td>{{ entity.video }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('medias_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('medias_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('medias_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(entities) }}
+    </div>
+    {% endblock %}

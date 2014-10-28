@@ -1,0 +1,97 @@
+{% extends 'WABoBundle::layout.html.twig' %}
+
+{% block content -%}
+
+    <!-- Primary table -->
+
+<div class="table-primary">
+    <div class="table-header">
+        <div class="table-caption">
+            <h1>Movies list</h1>
+        </div>
+    </div>
+    <table class="records_list table table-bordered">
+        <thead>
+            <tr>
+                <th>Visible</th>
+                <th>Cover</th>
+                <th>Favorites</th>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Synopsis</th>
+                <th>Daterelease</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>
+                    <button class="btn btn-success btn-rounded pull-right">
+                        {% if entity.visible == "true" %}
+                            <a href="{{ path('wa_bo_visible', {'id': entity.id}) }}">Visible : ON</a>
+                        {% else %}
+                            <a href="{{ path('wa_bo_visible', {'id': entity.id}) }}">Visible : OFF</a>
+                        {% endif %}
+                    </button> &nbsp;&nbsp;
+                </td>
+                <td>
+                    <button class="btn btn-success btn-rounded pull-right">
+                        {% if entity.cover == "true" %}
+                            <a href="{{ path('wa_bo_cover', {'id': entity.id}) }}">Cover : ON</a>
+                        {% else %}
+                            <a href="{{ path('wa_bo_cover', {'id': entity.id}) }}">Cover : OFF</a>
+                        {% endif %}
+                    </button> &nbsp;&nbsp;
+                </td>
+                <td>
+                    {% if entity in app.user.movies %}
+                    <a href="{{ path('favorites', {'id' : entity.id, 'type' : 'supp'}) }}"><i class="na-icon fa fa-heart"></i></a>
+                    {% else %}
+                    <a href="{{ path('favorites', {'id' : entity.id, 'type' : 'ajout'}) }}"><i class="na-icon fa fa-heart-o"></i></a>
+                    {% endif %}
+                </td>
+                <td><img src="{{ asset('uploads/movies/'~ entity.image) }}" class="img-responsive" alt="movieimage" /></td>
+                <td><a href="{{ path('movies_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.title }}</td>
+                <td>{{ entity.synopsis|striptags }}</td>
+                <td>{% if entity.dateRelease %}{{ entity.dateRelease|date('Y-m-d H:i:s') }}{% endif %}</td>
+
+                <!--<td>{% if entity.dateCreated %}{{ entity.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateUpdated %}{{ entity.dateUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateDeleted %}{{ entity.dateDeleted|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.shopDate %}{{ entity.shopDate|date('Y-m-d H:i:s') }}{% endif %}</td>-->
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('movies_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('movies_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('movies_addcart', { 'id': entity.id }) }}">Ajouter au panier</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+    <!-- / Primary table -->
+    <ul>
+        <li>
+            <a href="{{ path('movies_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(entities) }}
+    </div>
+
+    {% endblock %}
