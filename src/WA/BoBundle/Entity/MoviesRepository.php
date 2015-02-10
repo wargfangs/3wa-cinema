@@ -91,10 +91,10 @@ class MoviesRepository extends EntityRepository
             ->createQuery(
                 'SELECT m, m.views, m.title
                 FROM WABoBundle:Movies m
-
+                ORDER BY m.views DESC
              '
             )
-            ->setMaxResults(6)
+            ->setMaxResults(5)
             ->getResult();
     }
 

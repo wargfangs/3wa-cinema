@@ -56,7 +56,6 @@ class MoviesController extends Controller
 
             return $this->redirect($this->generateUrl('wa_fo_movies_show', array('id' => $id->getId())));
         }
-//exit(var_dump($user));
 
         return $this->render('WAFoBundle:Movies:show.html.twig', array(
             'entity'      => $id,
@@ -69,7 +68,6 @@ class MoviesController extends Controller
 
     private function createcommentslightForm(Comments $comments, $movie)
     {
-//        exit(var_dump($entity));
 
 
 

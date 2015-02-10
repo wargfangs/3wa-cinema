@@ -35,5 +35,3 @@ class VisibleServices
     }
 
 }
-
-// Ce service ne sert à rien

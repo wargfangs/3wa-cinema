@@ -80,7 +80,6 @@ class PageController extends Controller
 
 
 
-        // exit(var_dump($moviesbycat));
         return $this->render('WABoBundle:Default:page.html.twig',
             array( 'categories' => $categories,
                 'actors' => $actors, 'directors' => $directors,

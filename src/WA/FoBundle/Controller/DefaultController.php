@@ -24,7 +24,6 @@ class DefaultController extends Controller
         $movies = $em->getRepository('WABoBundle:Movies')->findAll();
 
         $moviesession = $em->getRepository('WABoBundle:Movies')->getMovieSession();
-        //exit(var_dump($moviesession));
 
 
 

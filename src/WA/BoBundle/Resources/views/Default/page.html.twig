@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-md-4 ">
-
+        {#Formulaire de création rapide de films#}
 
 
             <!-- 5. $PROFILE_WIDGET_LINKS_EXAMPLE ==============================================================
@@ -85,6 +85,7 @@
             </div> <!-- / .panel -->
             <!-- /7. $PROFILE_WIDGET_CENTERED_EXAMPLE -->
          </div>
+        {#Film aléatoire#}
 
     </div> <!-- / .row -->
 
@@ -182,6 +183,9 @@
     </div>
     <!-- /7. $MORRISJS_BARS -->
     <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Nuage de tags</span>
+        </div>
     <div id="myCanvasContainer" >
         <canvas width="300" height="300" id="myCanvas">
             <p>Anything in here will be replaced on browsers that support the canvas element</p>
@@ -200,20 +204,6 @@
     </div>
         </div>
 
-    {#<div>#}
-        {#<ul>#}
-            {#{% for tag in tagscloud %}#}
-                {#&#123;&#35;{% for movie in tag %}&#35;&#125;#}
-                {#{% if tag.1 < 2 %}#}
-                    {#<li><a href="{{ path('movies_show', { 'movie': movie.id }) }}">{{ tag.word }}</a></li>#}
-                {#{% else %}#}
-                    {#<li><a class="red" href="{{ path('movies_show', { 'movie': movie.id }) }}">{{ tag.word }}</a></li>#}
-                {#{% endif %}#}
-                {#&#123;&#35;{% endfor %}&#35;&#125;#}
-            {#{% endfor %}#}
-        {#</ul>#}
-    {#</div>#}
-
     <head>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8">
@@ -230,19 +220,13 @@
 
     </head>
     <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Salles de cinéma</span>
+        </div>
     <div id="map-canvas"></div>
     </div>
-
-
-
-
-
-
-
-
     <div class="col-md-6">
-
-        </div>
+    </div>
 
     <!-- Dark warning -->
     <div class="panel panel-warning panel-dark">
@@ -439,39 +423,6 @@
     <!-- / warning table -->
 </div>
 
-{#<div class="col-sm-12">#}
-    {#<!-- info table -->#}
-    {#<div class="table-info">#}
-        {#<div class="table-header">#}
-            {#<div class="table-caption">#}
-                {#CINEMAS : {{ cinema|length }}#}
-            {#</div>#}
-        {#</div>#}
-        {#<table class="table table-bordered">#}
-            {#<thead>#}
-            {#<tr>#}
-                {#<th>Name</th>#}
-                {#<th>Ville</th>#}
-            {#</tr>#}
-            {#</thead>#}
-            {#<tbody>#}
-
-            {#<tr>#}
-                {#<td>#}
-                    {#{{ cinema.title }}#}
-                {#</td>#}
-                {#<td>#}
-                    {#{{ cinema.ville }}#}
-                {#</td>#}
-            {#</tr>#}
-
-            {#</tbody>#}
-        {#</table>#}
-    {#</div>#}
-    {#<!-- / info table -->#}
-
-{#</div>#}
-
 <div class="col-sm-12">
     <!-- info table -->
     <div class="table-info">
@@ -514,8 +465,6 @@
     </div>
     <!-- / info table -->
 
-{#    {{ random('randommovie')}}
-#}
 </div>
 <div class="col-sm-12">
         <p>{{ render(controller('WABoBundle:User:index')) }}</p>

@@ -74,7 +74,6 @@ class MoviesController extends Controller
         $panier[]=array('id'=>$id, 'title'=>$entities->getTitle());
         $session->set('panier', $panier);
 
-        //exit(var_dump($panier));
 
         return $this->redirect($this->generateUrl('movies'));
 
@@ -91,7 +90,6 @@ class MoviesController extends Controller
         unset($panier[$id]);
         $session->set('panier', $panier);
 
-        //exit(var_dump($panier));
 
         return $this->redirect($this->generateUrl('movies'));
     }
@@ -304,13 +302,13 @@ class MoviesController extends Controller
             ->getForm()
         ;
     }
-    public function CoverAction($id){
+    public function CoverAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $cover = $em ->getRepository('WABoBundle:Movies')->findOneById($id);
         if($cover->getCover() == true){
             $cover->setCover(false);
-        //die(var_dump($movie));
         }
         else{
             $cover->setCover(true);
@@ -322,26 +320,15 @@ class MoviesController extends Controller
         return $this->redirect($this->generateUrl('wa_bo_page'));
     }
 
-    public function VisibleAction($id){
-//        $em = $this->getDoctrine()->getManager();
-
-//        $visible = $em ->getRepository('WABoBundle:Movies')->findOneById($id);
-//        if($visible->getVisible() == true){
-//            $visible->setVisible(false);
-//            //die(var_dump($movie));
-//        }
-//        else{
-//            $visible->setVisible(true);
-//        }
-//
-//        $em->persist($visible);
-//        $em->flush();
+    public function VisibleAction($id)
+    {
         $this->get('visible_manager')->visibleIndex($id);
 
         return $this->redirect($this->generateUrl('wa_bo_page'));
     }
 
-    public function favoritesAction($id, $type){
+    public function favoritesAction($id, $type)
+    {
         $movies = $this->getDoctrine()
             ->getRepository('WABoBundle:Movies')
             ->find($id);
